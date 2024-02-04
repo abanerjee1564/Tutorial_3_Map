@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PA Cities Map</title> 
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/></head>
+
+<body>
+
+<div id="map" style="width: 800px; height: 500px;"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+
+// Map options
+var map = L.map('map').setView([40.1, -76.5], 10);
+    
+// Tile layer
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+    
+// City data
+var lancaster = {
+  name: 'Lancaster',
+  lat: 40.044437,
+  lng: -76.306229,
+  population: 57503
+};
+    
+var harrisburg = {
+  name: 'Harrisburg', 
+  lat: 40.263680,
+  lng: -76.890739,
+  population: 50135
+};
+    
+// Add markers and bind tooltips
+L.circle([lancaster.lat,lancaster.lng], {
+  color: 'gold',
+  radius: lancaster.population/10, 
+  fillColor: 'blue',
+  weight: 6
+}).bindTooltip("<b>" + 'Name: ' + "</b>" + "<i>" + lancaster.name + "</i>" + "<br>" + "<b>" + 'Population: ' + "</b>" + "<i>" + lancaster.population + "</i>").addTo(map);
+    
+L.circle([harrisburg.lat, harrisburg.lng], {
+  radius: harrisburg.population/10, 
+  color: 'red',
+  fillColor: 'blue',
+  weight: 6
+}).bindTooltip("<b>" + 'Name: ' + "</b>" + "<i>" + harrisburg.name + "</i>" + "<br>" + "<b>" + 'Population: ' + "</b>" + "<i>" + harrisburg.population + "</i>").addTo(map);
+    
+</script>
+
+</body></html>
